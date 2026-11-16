@@ -1,0 +1,97 @@
+{
+  "groups": [
+    {
+      "name": "mcp.security",
+      "type": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mcp.security.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Master toggle for MCP security auto-configuration.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": true
+    },
+    {
+      "name": "mcp.security.issuer",
+      "type": "java.lang.String",
+      "description": "Expected OAuth 2.0 JWT issuer (iss claim).",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": "https://auth.aegis-mcp.internal"
+    },
+    {
+      "name": "mcp.security.audience",
+      "type": "java.lang.String",
+      "description": "Expected OAuth 2.0 JWT audience (aud claim) identifying this MCP server cluster.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": "mcp://enterprise-tool-cluster"
+    },
+    {
+      "name": "mcp.security.hmac-secret",
+      "type": "java.lang.String",
+      "description": "Shared HMAC-SHA256 signing secret used to mint and verify MCP JWT access tokens.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": "aegis-mcp-security-dev-signing-secret-change-in-production-256bit"
+    },
+    {
+      "name": "mcp.security.token-ttl-seconds",
+      "type": "java.lang.Long",
+      "description": "Lifetime in seconds for minted MCP access tokens.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": 300
+    },
+    {
+      "name": "mcp.security.clock-skew-seconds",
+      "type": "java.lang.Long",
+      "description": "Allowed clock skew in seconds when validating token expiration and issued-at claims.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": 30
+    },
+    {
+      "name": "mcp.security.replay-protection-enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables jti (JWT ID) replay protection to prevent token or assertion replay attacks.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": true
+    },
+    {
+      "name": "mcp.security.require-capability-claim",
+      "type": "java.lang.Boolean",
+      "description": "Requires incoming JWT assertions to contain a non-blank capability_id claim.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": true
+    },
+    {
+      "name": "mcp.security.default-token-budget",
+      "type": "java.lang.Integer",
+      "description": "Default per-window token budget assigned when the token omits a token_budget claim.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": 8000
+    },
+    {
+      "name": "mcp.security.default-qpm-limit",
+      "type": "java.lang.Integer",
+      "description": "Default per-minute query rate limit assigned when the token omits a qpm_limit claim.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": 60
+    },
+    {
+      "name": "mcp.security.protected-path-patterns",
+      "type": "java.util.List<java.lang.String>",
+      "description": "Ant-style URL path patterns secured by the MCP JWT authentication filter.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties",
+      "defaultValue": [
+        "/mcp/**",
+        "/v1/mcp/**"
+      ]
+    },
+    {
+      "name": "mcp.security.clients",
+      "type": "java.util.Map<java.lang.String,com.aegis.mcp.security.config.McpSecurityProperties$ClientRegistration>",
+      "description": "Registered OAuth 2.0 clients authorized for RFC 7523 jwt-bearer client assertions.",
+      "sourceType": "com.aegis.mcp.security.config.McpSecurityProperties"
+    }
+  ]
+}
